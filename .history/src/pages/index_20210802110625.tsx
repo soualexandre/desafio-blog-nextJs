@@ -1,7 +1,6 @@
 import { render } from '@testing-library/react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import { getPrismicClient } from '../services/prismic';
 import Prismic from '@prismicio/client'
 import commonStyles from '../styles/common.module.scss';
@@ -49,17 +48,16 @@ export default function Home({ postsPagination }: HomeProps) {
       </Head>
       <main className={styles.container}>
         {posts.map(post => (
-          <Link key={post.uid} href={`/post/${post.uid}`}>
-          <a className={styles.content}>
+          <Link key={post.uid} href="#">
+          <a  className={styles.content}>
             <h1>{post.data.title}</h1>
             <p>{post.data.subtitle}</p>
             <div className={styles.postFooter}>
               <span><img src="/assets/calendar.svg" alt="icon calendar" /><time>{dateFormatter(post.first_publication_date)}</time></span>
               <span><img src="/assets/user.svg" alt="icon calendar" />{post.data.author}</span>
             </div>
+            </Link>
           </a>
-          </Link>
-
         ))}
         {nextPage &&
           <div className={styles.nextPage} >
