@@ -7,6 +7,7 @@ import commonStyles from '../styles/common.module.scss';
 import { dateFormatter } from '../utils/dateFormater';
 import styles from './home.module.scss';
 import { RichText } from 'prismic-dom';
+import id from 'date-fns/esm/locale/id/index.js';
 import { useState } from 'react';
 
 interface Post {

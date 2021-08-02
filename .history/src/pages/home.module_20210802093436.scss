@@ -1,34 +1,36 @@
-.container {
+.container{
     max-width: 1120px;
     margin: 0 auto;
-}
-.nextPage {
-    a {
+    &.nextPage{
         color: var(--text-pink);
         text-decoration: none;
         line-height: 2.5rem;
-        &:hover {
+        &:hover{
             text-decoration: underline;
         }
     }
+
 }
 
-.content {
-    h1 {
+.content{
+    margin-bottom:2rem;
+    h1{
         font-weight: 700;
         line-height: 2rem;
-        font-size: 1, 5rem;
+        font-size: 1,5rem;
     }
-    p {
-        line-height: 2.5rem;
+    p{
+        line-height:2.5rem;
         font-size: 1rem;
     }
-
-    span {
+    
+    span{
         line-height: 2.5rem;
         margin-right: 2rem;
-        img {
+        img{
             margin-right: 0.5rem;
         }
+        
     }
+   
 }

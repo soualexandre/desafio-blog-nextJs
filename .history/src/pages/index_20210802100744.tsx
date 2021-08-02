@@ -7,6 +7,7 @@ import commonStyles from '../styles/common.module.scss';
 import { dateFormatter } from '../utils/dateFormater';
 import styles from './home.module.scss';
 import { RichText } from 'prismic-dom';
+import id from 'date-fns/esm/locale/id/index.js';
 import { useState } from 'react';
 
 interface Post {
@@ -52,7 +53,7 @@ export default function Home({ postsPagination }: HomeProps) {
             <h1>{post.data.title}</h1>
             <p>{post.data.subtitle}</p>
             <div className={styles.postFooter}>
-              <span><img src="/assets/calendar.svg" alt="icon calendar" /><time>{dateFormatter(post.first_publication_date)}</time></span>
+              <span><img src="/assets/calendar.svg" alt="icon calendar" />{dateFormatter(post.first_publication_date)} </span>
               <span><img src="/assets/user.svg" alt="icon calendar" />{post.data.author}</span>
             </div>
           </a>
