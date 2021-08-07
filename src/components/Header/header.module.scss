@@ -2,6 +2,8 @@
     height: 5rem;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    list-style: none;
+
 }
 
 .contentHeader{
@@ -18,11 +20,11 @@
         font-weight: 700;
         font-size: 1.5rem;
         margin-left: 0.5rem;
-        color: var(--text);
+        color: var(--head-color);
         span{
             margin:0;
             font-size: 1.5rem;
-            color: var(--text-pink);
+            color: var(--highlight-color);
         }
     }
     

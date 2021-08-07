@@ -1,45 +1,63 @@
+// TODO
 .container {
     max-width: 1120px;
     margin: 0 auto;
-}
-.nextPage {
-    margin-top: 1rem;
-    a {
-        color: var(--text-pink);
-        text-decoration: none;
-        line-height: 2.5rem;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 40px;
+        cursor: pointer;
+
+        &:hover {
+
+            h2 {
+                color: var(--highlight-color);
+            }
+
+            svg {
+                color: var(--highlight-color);
+            }
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--head-color);
+            transition: color .6s;
+        }
+
+        p {
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: var(--body-color);
+        }
+
+        .infos {
+            display: flex;
+            gap: 20px;
+
+            .card {
+                display: flex;
+                gap: 5px;
+
+                color: var(--info-color);
+
+                svg {
+                    transition: color .6s;
+                }
+            }
+        }
+    }
+
+    .nextPage {
+        color: var(--highlight-color);
+        font-size: 1.25rem;
+        cursor: pointer;
+
         &:hover {
             text-decoration: underline;
-        }
-    }
-}
-
-.content {
-    display: block;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-    text-decoration:none;
-
-    h1 {
-        font-weight: 700;
-        line-height: 2rem;
-        font-size: 1, 5rem;
-        transition: color 0.2s;
-        &:hover{
-            color: var(--text-pink);
-        }
-    }
-    p {
-        line-height: 1.5rem;
-        font-size: 1rem;
-    }
-
-    span {
-        line-height: 2.5rem;
-        margin-right: 2rem;
-        font-weight: 400;
-        img {
-            margin-right: 0.5rem;
         }
     }
 }

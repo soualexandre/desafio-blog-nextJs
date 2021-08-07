@@ -1,10 +1,11 @@
-:root{
-  --white: #ffffff;
-  --background: #1A1D23;
-  --background-header: #282b31;
-  --text: #F8F8F8;
-  --text-pink: #FF57B2;
+:root {
+  --background-color: #282C34;
+  --head-color: #F8F8F8;
+  --body-color: #D7D7D7;
+  --info-color: #BBBBBB;
+  --highlight-color: #FF57B2;
 }
+
 
 * {
   box-sizing: border-box;
@@ -12,7 +13,7 @@
   padding: 0;
 }
 body{
-  background: var(--background);
+  background: var(--background-color);
   color: var(--text);
 }
 

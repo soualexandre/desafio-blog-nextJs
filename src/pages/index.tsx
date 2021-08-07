@@ -1,14 +1,19 @@
-import { render } from '@testing-library/react';
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
+import Header from '../components/Header';
+
 import { getPrismicClient } from '../services/prismic';
-import Prismic from '@prismicio/client'
-import commonStyles from '../styles/common.module.scss';
+import Prismic from '@prismicio/client';
+
+import { AiOutlineCalendar } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
+
 import { dateFormatter } from '../utils/dateFormater';
+
+
+import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
-import { RichText } from 'prismic-dom';
 import { useState } from 'react';
+import Link from 'next/link';
 
 interface Post {
   uid?: string;
@@ -30,6 +35,7 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps) {
+
   const [posts, setPosts] = useState<Post[]>(postsPagination.results);
   const [nextPage, setNextPage] = useState(postsPagination.next_page);
 
@@ -43,56 +49,53 @@ export default function Home({ postsPagination }: HomeProps) {
   }
 
   return (
-    <>
-      <Head>
-        <title>CodeNews - Home</title>
-      </Head>
       <main className={styles.container}>
         {posts.map(post => (
           <Link key={post.uid} href={`/post/${post.uid}`}>
-          <a className={styles.content}>
-            <h1>{post.data.title}</h1>
-            <p>{post.data.subtitle}</p>
-            <div className={styles.postFooter}>
-              <span><img src="/assets/calendar.svg" alt="icon calendar" /><time>{dateFormatter(post.first_publication_date)}</time></span>
-              <span><img src="/assets/user.svg" alt="icon calendar" />{post.data.author}</span>
-            </div>
-          </a>
+            <a className={styles.content}>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.subtitle}</p>
+              <div className={styles.infos}>
+                <div className={styles.card}>
+                  <AiOutlineCalendar />
+                  <time>{dateFormatter(post.first_publication_date)}</time>
+                </div>
+                <div className={styles.card}>
+                  <AiOutlineUser />
+                  <span>{post.data.author}</span>
+                </div>
+              </div>
+            </a>
           </Link>
-
         ))}
+
         {nextPage &&
-          <div className={styles.nextPage} >
-            <a onClick={handleLoadMorePosts}> Carregar mais posts</a>
+          <div className={styles.nextPage} onClick={handleLoadMorePosts}>
+            Carregar mais posts
           </div>
         }
-
       </main>
-    </>
   )
 }
 
-export const getStaticProps : GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
-
-  const postsResponse = await prismic.query([
-    Prismic.predicates.at('document.type', 'codenews')
-  ],
+  const postsResponse = await prismic.query(
+    [Prismic.predicates.at('document.type', 'codenews')],
     {
-      pageSize: 2,
-    },
-
+      pageSize: 1,
+    }
   ) as PostPagination;
 
   const postsPagination: PostPagination = {
     next_page: postsResponse.next_page,
     results: postsResponse.results,
-  }
-
+  };
+  console.log(postsPagination)
   return {
     props: {
       postsPagination,
     },
-    revalidate: 60 * 30  //30 minutes
+    revalidate: 60 * 30 //30 minutes
   };
 };
